@@ -1,0 +1,387 @@
+#tabs-therapist-box .txt-center, #modal-settings .txt-center, #box_manage_jobs .txt-center { text-align: center; }
+
+#pfilter, .psearch { margin: 20px 0; }
+.modal-dialog, .ui-dialog .ui-dialog-content.modal-dialog { overflow: visible; }
+#modal-settings .center { text-align: center; }
+#modal-settings .block { margin: 5px 0 10px; }
+.ajax-loading-dialog { position: absolute;top: -25px;right: 25px; }
+/*.ui-widget-header { background: #cccccc url("./images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;}*/
+.ui-widget-overlay { background-image: none; }
+
+.sm-error, input[type="text"].sm-error { border: 1px solid red; }
+.valg-top { vertical-align: top; }
+
+#tabs-therapist-box .wrap { display: table;width: 100%; }
+#tabs-therapist-box #tab-1 #map-canvas { width:705px; height:500px; float:left; margin-bottom: 10px; margin-top:20px; }
+#tabs-therapist-box #tab-1 #msg-result { font-weight: bold;font-style: italic; display: inline; }
+#tabs-therapist-box .form-ajax { margin-bottom: 15px; }
+#tabs-therapist-box .form-ajax .controls {margin-bottom:12px;}
+
+#tabs-therapist-box #results-therapists { clear:both; margin: 25px 0 0; width: 700px; }
+#tabs-therapist-box #results-therapists .found_therapists { margin-right: 10px; }
+#tabs-therapist-box #results-therapists .count-results { border-bottom: 1px solid #ccc;padding-bottom: 10px;font-weight: bold; }
+#tabs-therapist-box #results-therapists .box-results { max-height: 398px;overflow: auto;border-bottom: 3px solid #ddd; }
+#tabs-therapist-box #results-therapists .btn-send { margin-bottom: 0;text-align: right;margin-top: 1em; }
+.hidden-block { display: none; }
+#tabs-therapist-box #results-therapists #list-result li, #box_manage_jobs .list-therapists li { padding: 10px;display: table;width: 100%;
+box-sizing: border-box; }
+
+#tabs-therapist-box #results-therapists #list-result li small.link, 
+#box_manage_jobs .list-therapists li small.link { float: right; }
+
+#tabs-therapist-box #results-therapists #list-result li small.adrs, 
+#box_manage_jobs .list-therapists li small.adrs { display: table;margin-left: 25px; }
+
+#tabs-therapist-box #results-therapists #list-result .line-a, #box_manage_jobs .line-a { background: #eee; }
+#tabs-therapist-box #results-therapists #list-result .line-b, #box_manage_jobs .line-b {  }
+#tabs-therapist-box #results-therapists .select-all { font-style: italic;font-weight: bold;margin: 0;padding: 10px; }
+#tabs-therapist-box #tab-1 #wrapper_asgn_location #asgn_location { width: 265px; }
+#tabs-therapist-box #tab-1 #wrapper_asgn_location { display: inline-table;position: relative; }
+#tabs-therapist-box #tab-1 #wrapper_asgn_location:hover a#view_location { display: table; background: #dedede; }
+#tabs-therapist-box #tab-1 #wrapper_asgn_location a#view_location { position:absolute;left: 0;top:28px;display: none;background: #fff;padding: 4px 8px;z-index: 10;font-size: 12px; }
+
+#tabs-therapist-box #tab-1 .inpt-searchs { width: 205px; }
+#tabs-therapist-box #tab-1 .ajax-loading.show, #panel-jobs-therapist .ajax-loading.show { display: inline;visibility: visible; }
+
+#tabs-therapist-box table.widefat { border-collapse: collapse; }
+#tabs-therapist-box table.widefat td { padding: 4px 10px; }
+#tabs-therapist-box table.widefat td:first-child{width: 140px;}
+#tabs-therapist-box b { font-weight: bold; }
+
+#loading-search-therapist.show { display: inline;visibility: visible; }
+
+#box_tabs_therapist #back-main-panel { margin: 0 auto;display: table;padding: 8px;font-size: 15px; }
+
+.fsize14 { font-size: 14px; }
+.fsize16 { font-size: 16px; }
+.fsize18 { font-size: 18px; }
+.fsize20 { font-size: 20px; }
+
+#box_manage_jobs table.widefat > tbody > tr > td { padding: 7px; }
+
+#box_manage_jobs table.widefat td table.gfield_list td { width: 100px;vertical-align: middle; }
+
+#box_manage_jobs .b-selected { border: 1px solid red !important; }
+
+#panel-jobs-therapist .error,#panel-jobs-therapist .info { padding: 10px;box-sizing: border-box; }
+#panel-jobs-therapist .error { color: #D8000C;background-color: #FFBABA;border: 1px solid #D8000C; }
+#panel-jobs-therapist .info { color: #00529B;background-color: #BDE5F8;border: 1px solid #00529B; }
+
+
+.box-success { background-color: #dff0d8;border-color: #d6e9c6;color: #468847; }
+.box-error {background-color: #f2dede;border-color: #eed3d7;color: #b94a48;}
+
+.eventDate { float:left; }
+.eventDate .title { font-size: 13px }
+.list-locations .event-info-button { margin-top: 10px; }
+.list-locations .field-main { height: 40px; }
+
+#filter-spored { position: absolute; right: 0; bottom: 12px; }
+#filter-spored label { font-size: 12px; }
+#only_spored { margin: 0; }
+.list-employees { width: 80%;margin: 0 auto; }
+
+.box-forms-send { border: 1px solid #aaa; border-radius: 3px 3px 3px 3px;margin: 15px 0;padding: 10px; }
+.box-forms-send { opacity: 0.4;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";filter: alpha(opacity=40); }
+.box-forms-send.method-selc { opacity: 1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter: alpha(opacity=100); }
+
+#slc_method_send { margin-right: 2px; }
+
+#panel-confirmation-events { position: relative; }
+
+#modal-update-profile { position: absolute;width: 100%;height: 100%; }
+#modal-update-profile .bg-modal { position: absolute;top: 0;left: 0;background: #aaa;width: 100%;border: 1px solid #aaa;opacity: 0.2;height: 100%;z-index: 10; }
+#modal-update-profile #form-update-profile { margin: 0 auto;display: table;margin-top: 10%;background: #fff;position: relative;z-index: 11;width: 80%;border: 1px solid #ddd;padding: 13px; }
+#modal-update-profile #form-update-profile h3 { border-bottom: 1px solid #ddd;padding-bottom: 10px;margin-bottom: 15px; }
+
+#panel-confirmation-events.show-update-profile { min-height: 450px; }
+#panel-confirmation-events.show-update-profile .panel-content { text-align: center; }
+
+.stuffbox .ui-tabs .ui-tabs-panel { padding: 1em 1.2em; }
+.ui-dialog.dialog-editor { z-index: 300002; }
+
+#message-content_ifr { min-height: 250px; }
+
+#method-payment { display: table;margin-bottom: 15px; }
+#method-payment .wimg { padding: 5px;float: left;border: 1px solid #fff;position: relative;margin-right: 15px; }
+#method-payment .wimg .radio-payment { position: absolute;top: 5px;left: 5px; }
+
+#method-payment .wimg.selected { border: 1px solid #aaa;border-bottom-width: 4px; }
+
+#info_users .vcenter { vertical-align: middle; }
+#info_users td.bBottom { border-bottom: 1px solid #dfdfdf; }
+
+table.widefat tbody tr td.entry-view-field-value table.gfield_list thead tr th:last-child, 
+table.widefat tbody tr td.entry-view-field-value table.gfield_list td:last-child {  }
+
+#link-show-modal-settings{font-size: 12px; float:left; margin-right:25px;}
+#dropdown-location-message { display: block; font-size: 11px; color:#f00; }
+#therapist-select-validation {display: none; color:#f00; float: right;}
+
+.aloha-textarea{margin-bottom: 12px; width: 98% !important;}
+#gentry_email_notes_to, #gentry_email_subject {padding: 4px;}.has-right-sidebar #post-body-content{	margin-right:0px !important;}
+.stuffbox {
+    background: #CBEFFF !important;
+}
+
+.admlogo{
+	float:right;
+}
+span.year {
+    background: #0C577B;
+    color: white;
+    padding: 4px;
+}
+
+span.month {
+    padding: 14px;
+}
+
+.event_search{
+	border-top: 1px solid #0C577B;
+    border-bottom: 1px solid #0C577B;
+	margin: 15px 13px;
+    padding: 7px 1px;
+	
+}
+
+.event_search>input{
+	background: #CBEFFF !important;
+    border: none;
+    border-bottom: 1px solid;
+    width: 49px;
+	
+}
+
+.mainbox {
+    background: #CBEFFF !important;
+}
+.postbox.mainbox {
+    background: #CBEFFF;
+}
+.eventarchive_head{
+	color: #0C577B;
+    font-size: 36px;
+    
+    font-weight: bold;
+    margin: 10px;
+}
+.event_head{
+	color: #0C577B;
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.event_head2 {
+    color: #0C577B;
+    font-size: 34px;
+    /* text-align: center; */
+    font-weight: bold;
+    margin: 7px 18px;
+}
+
+.row{clear:both; width: 98%; margin:11px 17px}
+.nameheading{
+	color: #3588B0;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.selectedstat{
+    color: #F00;
+    
+    font-weight: bold;
+}
+
+.simpletext{
+	font-weight: bold;
+}
+
+.note_head{
+color:#3588B0;
+font-size:24px;
+font-weight:bold;
+
+}
+.simplestat{
+	font-weight: bold;
+}
+
+.bottomrow{
+	clear: both;
+    margin: 19px;
+    width: 96%;
+	
+}
+
+.toprow{
+	clear: both;
+    border-top: 1px solid #0073aa;
+    margin: 19px 19px 0px;
+    width: 96%;
+    display: inline-flex;
+}
+
+.divrow{
+	clear: both;
+    border-bottom: 1px solid #0073aa;
+    margin: 10px;
+    padding: 8px;
+    width: 96%;
+    display: inline-flex;
+}
+
+.firstdivrow{
+clear: both;
+    border-bottom: 1px solid #0073aa;
+    margin: 0px 15px 0px 14px;
+    padding: 0px;
+    width: 96%;
+    display: inline-block;
+}
+
+.seconddivrow{
+	clear: both;
+    margin: 1px 5px 0px;
+    padding: 0px 0px 25px 10px;
+    width: 96%;
+    display: inline-flex;
+}
+
+table.fixed.entry-detail-notes {
+    width: 100%;
+}
+
+td.rightbtn {
+    width: 20%;
+    text-align: right;
+}
+
+
+.looprow{
+	clear: both;
+    border-top: 1px solid #0073aa;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    display: inline-block;
+}
+
+
+.leftcol{
+	float:left;
+	width:100%
+}
+
+.rightcol{
+	float:right;
+	width:30%;
+	text-align: right;
+}
+
+
+a.toplink {
+    background: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    padding: 7px;
+    font-size: 12px;
+    display: inline-grid;
+    text-align: center;
+}
+
+a.mainlink {
+    background: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    padding: 7px;
+    font-size: 12px;
+    display: inline-grid;
+    width: 130px !important;
+    text-align: center;
+}
+
+
+a.archivenote {
+    background: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    padding: 7px;
+    font-size: 12px;
+    display: inline-grid;
+    width: 96px !important;
+    text-align: center;
+}
+
+.redbutton{
+	background: #F00 !important;
+	color:white !important;
+	
+}
+
+a.mainlinkred {
+    background: #F00;
+    color: #fff;
+    text-decoration: none;
+    padding: 7px;
+    font-size: 12px;
+    display: inline-grid;
+    width: 130px !important;
+    text-align: center;
+	box-shadow: 0px 4px 0px 0px #D40000;
+}
+
+.lochead{
+	color: #3588B0;
+    font-style: normal;
+    font-size: 22px;
+    font-weight: bold;
+	
+	
+}
+
+.subhead{
+	color: #60ADD7;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.locvalue{
+	color: #444444;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.morelocation {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+	text-decoration:none;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
