@@ -4665,19 +4665,11 @@ EOF;
 
         }
 
-
-
         $locations = $this->get_locations_user($user_id,false,$date);
-
-        
 
         $available_locations = array();
 
-        
-
         if( !empty($locations) ) {
-
-            
 
             foreach($locations as $location) {
 
@@ -4833,7 +4825,7 @@ EOF;
         if($created_by) {
 
             $uid = $user_id == 0 ? null : $user_id;
-
+           
             return AJ_Location::get_confirmation_events($uid, $date, $isSponsored);
 
         } else { //si no, se debe buscar sobre toda la BD cuales locations tienen una invitación al usuario therapist actual
@@ -6256,21 +6248,18 @@ class AJ_Location {
 
 
 
-    public static function get_confirmation_events($user,$filter_date = null,$onlyLocationTypeCorporate = false,$onlyPrimary = false, $therapist_id=0) {
+    public static function get_confirmation_events($user,$filter_date = null,$onlyLocationTypeCorporate = false,$onlyPrimary = false, $therapist_id=0, $assigned = false) {
 
-		
-        $objUser = is_numeric($user) ? get_user_by('id', $user) : get_user_by('email', $user);
-
-
+		$objUser = is_numeric($user) ? get_user_by('id', $user) : get_user_by('email', $user);
 
         $user = empty($objUser) ? 0 : $user;
-
-
 
         global $wpdb;
 
         $where = $onlyPrimary ? 'AND l.primary_location=1 ' : '';
-		
+
+		$where .= " AND l.status!='delete' and l.status!='archive' ";
+
 		if(isset($_GET["location_listing"]) && $_GET["location_listing"]!=''){
 			$where .= 'AND l.id='.$_GET["location_listing"]." ";
 		}
@@ -6285,7 +6274,7 @@ class AJ_Location {
 			$search_query = '';
 			
 			if($objUser->ID!=136343 && $objUser->ID!=65263 && $objUser->ID!=64380){
-				$search_query = 'AND a.value LIKE %s:'.$len.':"'.$objUser->user_email.'"%';
+				//$search_query = 'AND a.value LIKE %s:'.$len.':"'.$objUser->user_email.'"%';
 			}
 
             $query = <<<EOF
@@ -6322,10 +6311,23 @@ EOF;
             }
 			*/
             
+        //
+        } elseif($user ) {
+            if($assigned == false){
+                if(is_admin()? ($user!=136343 && $user!=65263 && $user!=64380):1){
+                    $where .= 'AND l.created_by='.$user.' ';
+                }
+            }else{
+                //dev:lamprea:11-mar-2013: Added validation when a therapist is invited
+                $user = get_user_by('id', get_current_user_id());
+                //$therapist_id>0
+                
+                if( !empty($user->user_email) && $user->user_email!='' && get_current_user_id() != 136343 && get_current_user_id() != 65263 && get_current_user_id() != 64380 ) {
 
-        } elseif($user && $user!=136343 && $user!=65263 && $user!=64380) {
-			
-            $where .= 'AND l.created_by='.$user.' ';
+                    $where .= "AND users_invited LIKE '%i:".get_current_user_id()."%'";
+
+                }
+            }
 
         }
 
@@ -6350,21 +6352,6 @@ EOF;
             }
 
         }
-
-
-
-
-
-        //dev:lamprea:11-mar-2013: Added validation when a therapist is invited
-		$user = get_user_by('id', get_current_user_id());
-		//$therapist_id>0
-		
-        if( !empty($user->user_email) && $user->user_email!='' && get_current_user_id() != 136343 && get_current_user_id() != 65263 && get_current_user_id() != 64380 ) {
-
-            $where .= "AND users_invited LIKE '%i:".get_current_user_id()."%'";
-
-        }
-	
 
         // if get all massage event locations in the database filter just by date :(
 
