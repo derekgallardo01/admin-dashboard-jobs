@@ -4732,7 +4732,7 @@ EOF;
                 if(empty($loc->accept_job)) {
 					//
                     $loc->exists_vacantes = true;
-					if($_GET["location_listing"]){
+					if(isset($_GET["location_listing"])){
 						if($_GET["location_listing"]==$loc->ID)
 						$available_locations[] = $loc;
 						
@@ -4825,8 +4825,8 @@ EOF;
         if($created_by) {
 
             $uid = $user_id == 0 ? null : $user_id;
-           
-            return AJ_Location::get_confirmation_events($uid, $date, $isSponsored);
+            
+            return AJ_Location::get_confirmation_events($uid, $date, $isSponsored, false, 0, false );
 
         } else { //si no, se debe buscar sobre toda la BD cuales locations tienen una invitación al usuario therapist actual
 
@@ -6231,27 +6231,21 @@ class AJ_Location {
                 'status' => 'OK',
 
                 'message' => __('Ok',Admin_Jobs::LANG),
-
                 'results' => $list
-
             );
 
             die(json_encode($result));
-
         }
-
-
 
         return is_null($list) ? array() : $list;
 
     }
 
 
-
-    public static function get_confirmation_events($user,$filter_date = null,$onlyLocationTypeCorporate = false,$onlyPrimary = false, $therapist_id=0, $assigned = false) {
+    public static function get_confirmation_events($user,$filter_date = null,$onlyLocationTypeCorporate = false,$onlyPrimary = false, $therapist_id=0, $assigned = true) {
 
 		$objUser = is_numeric($user) ? get_user_by('id', $user) : get_user_by('email', $user);
-
+        
         $user = empty($objUser) ? 0 : $user;
 
         global $wpdb;
@@ -6264,7 +6258,7 @@ class AJ_Location {
 			$where .= 'AND l.id='.$_GET["location_listing"]." ";
 		}
 		
-        if(!is_numeric($user)) {
+        if(!is_numeric($user) && 0) {
 			
 			
             $len = strlen($objUser->user_email);
@@ -6312,9 +6306,10 @@ EOF;
 			*/
             
         //
-        } elseif($user ) {
+        } elseif($user ||  $therapist_id>0 ) {
+            
             if($assigned == false){
-                if(is_admin()? ($user!=136343 && $user!=65263 && $user!=64380):1){
+                if(is_admin()? ($user!=13634300 && $user!=65263 && $user!=64380):1){
                     $where .= 'AND l.created_by='.$user.' ';
                 }
             }else{
@@ -6322,7 +6317,7 @@ EOF;
                 $user = get_user_by('id', get_current_user_id());
                 //$therapist_id>0
                 
-                if( !empty($user->user_email) && $user->user_email!='' && get_current_user_id() != 136343 && get_current_user_id() != 65263 && get_current_user_id() != 64380 ) {
+                if( !empty($user->user_email) && $user->user_email!='' && get_current_user_id() != 13634300 && get_current_user_id() != 65263 && get_current_user_id() != 64380 ) {
 
                     $where .= "AND users_invited LIKE '%i:".get_current_user_id()."%'";
 
@@ -6401,7 +6396,7 @@ SQL;
 
             $reserved = array('user_id' => $e->user_id, 'start' => $e->hour_start, 'end' => $e->hour_end);
 
-            $eL->myrange =  ($e->user_id == $objUser->ID) ? $reserved : ( $eL->myrange ? $eL->myrange : array() );
+            $eL->myrange =  ($e->user_id == $objUser->ID) ? $reserved : ( isset($eL->myrange) ? $eL->myrange : array() );
 
             
 
