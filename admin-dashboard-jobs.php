@@ -4666,6 +4666,7 @@ EOF;
         }
 
         $locations = $this->get_locations_user($user_id,false,$date);
+        
 
         $available_locations = array();
 
@@ -5022,7 +5023,7 @@ EOF;
      * */
 
     function exists_available_job($location, $user_id = false) {
-
+        //echo $user_id.'lll';
         if(!is_object($location)) {
 
             $location = $this->load_location($location);
@@ -5058,19 +5059,23 @@ EOF;
         
 
         if($user_id) {
-
+            $passed = 0;
             if(is_array($accept_filters)) {
 
                 foreach($accept_filters as $userId => $listAccept) {
 
                     if($user_id !== $userId && in_array($location->ID, $listAccept)) {
-
-                        return false;
-
+                        //updated for display non accepted location
+                        //return false;
+                        $passed = 1;
                     }
 
                 }
 
+            }
+
+            if($passed == 0){
+                //return false;
             }
 
             return ($amount_vacantes > 0) || ( array_key_exists($user_id, $accept_filters) && in_array($location->ID, $accept_filters[$user_id]) );
