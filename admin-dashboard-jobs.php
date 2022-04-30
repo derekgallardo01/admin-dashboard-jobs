@@ -4982,10 +4982,11 @@ EOF;
 			/*$content = "Dear ".$user_name.", we're sending you a friendly reminder that your event, ".$customerdata[8]." will occur on ".$time_start." to ".$time_end.", for event details click <a href='".site_url('/my-events/')."'>here</a>.";
 			wp_mail($user_email, $subject, $content, '', false);*/
 			
+
 			
 			if($response == 'yes') {
 				
-				$isSend = wp_mail($customerdata[44], "Your job has been accepted by a therapist", "Dear ".$customerdata[33].", your job has been accepted by a therapist for That's The Spot Massage Therapy", '', false);
+				$isSend = wp_mail($customerdata[44], "Your job has been accepted by a therapist", "Dear ".$customerdata[33].", your job has been accepted by a therapist for That's The Spot Massage Therapy. For event details click <a href='".site_url('/my-events/')."'>here</a>.", '', false);
 				
 				//$isSend = wp_mail($customerdata[44], "Your job has been accepted by a therapist", "Dear customer your job has been accepted by therapist on site That's the Spot Massage Therapy", '', false);
 				
