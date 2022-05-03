@@ -4986,7 +4986,7 @@ EOF;
 			
 			if($response == 'yes') {
 				
-				$isSend = wp_mail($customerdata[44], "Your job has been accepted by a therapist", "Dear ".$customerdata[33].", your job has been accepted by a therapist for That's The Spot Massage Therapy. For event details click <a href='".site_url('/my-events/')."'>here</a>.", '', false);
+				$isSend = wp_mail($customerdata[44], "Your job has been accepted by a therapist", "Dear ".$customerdata[33].", your job has been accepted by a therapist for That's The Spot Massage Therapy. For event details click <a href='".site_url('/event-listing/')."'>here</a>.", '', false);
 				
 				//$isSend = wp_mail($customerdata[44], "Your job has been accepted by a therapist", "Dear customer your job has been accepted by therapist on site That's the Spot Massage Therapy", '', false);
 				
