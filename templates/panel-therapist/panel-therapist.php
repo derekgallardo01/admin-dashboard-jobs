@@ -51,7 +51,7 @@ if(!$is_request_ajax):
                             <div class="content">
 							<?php 
 							if(in_array(trim($key),array(34,44)) ){
-								if($location->accepted && $eventDate <= strtotime('+3 days')){
+								if($location->accepted && $eventDate <= strtotime('+4 days')){
 									
 								echo $key == Admin_Jobs::$field_id_dates_and_events ? $txtTime : $info[$key]; 
 								}
