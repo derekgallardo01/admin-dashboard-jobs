@@ -6631,7 +6631,7 @@ function job_reminder_thirty_minute_job_cron_asday($day = 14){
 						$userpass = get_user_meta($user->ID, 'generated_random', true);
 						//".$data[8]." ".$data[9]." ".$data[51]." ".$data[10]."
 						
-						$content_for_therapist = "Dear ".$user->first_name.", we're sending you a friendly reminder that your event, ".((isset($data[52]) && $data[52]!='')?$data[52]:$data[38])." will occur on ".$time_start." to ".$time_end.", for event details click <a href='".site_url('/my-events/')."'>here</a>.";
+						$content_for_therapist = "Dear ".$user->first_name.", we're sending you a friendly reminder for your event, ".((isset($data[52]) && $data[52]!='')?$data[52]:$data[38])." will occur on ".$time_start." to ".$time_end.", for event details click <a href='".site_url('/my-events/')."'>here</a>.";
 						
 						$subject = 'Event Reminder';
 						
@@ -6674,7 +6674,7 @@ function job_reminder_thirty_minute_job_cron_asday($day = 14){
 					///$isSend = wp_mail($customeremail, 'email user', 'email for user'.$eventowner_email, $headers);
 					
 					if($eventowner_email!=''){
-					$content_for_eventowner = "Dear ".$eventowner_name.", we're sending you a friendly reminder that your event, ".((isset($data[52]) && $data[52]!='')?$data[52]:$data[38])." will occur on ".$time_start." to ".$time_end.", for event details click <a href='".site_url('/my-events/')."'>here</a>.";
+					$content_for_eventowner = "Dear ".$eventowner_name.", we're sending you a friendly reminder for your event, ".((isset($data[52]) && $data[52]!='')?$data[52]:$data[38])." will occur on ".$time_start." to ".$time_end.", for event details click <a href='".site_url('/event-listing/')."'>here</a>.";
 						
 						$subject = 'Event Reminder';
 							$content_log .= "\n send mail to customer -  ".$eventowner_email;
