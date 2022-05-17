@@ -41,7 +41,7 @@ if(!$is_request_ajax):
                         <?php 
 							foreach($labels as $key=>$lbel){
 							
-							if(in_array($key, $exclude_fields)) 
+							if(in_array($key, array_merge($exclude_fields,array(44)))) 
 							continue; 
 							
 													

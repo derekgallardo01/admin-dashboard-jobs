@@ -382,6 +382,8 @@ a.mainlinkred {
     -ms-user-select: none;
     user-select: none;
 }
-
+div.mce-container {
+    z-index: 99999999999 !important;
+}
 
 

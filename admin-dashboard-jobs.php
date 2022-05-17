@@ -5991,7 +5991,7 @@ class AJ_Location {
         $sst = strtotime($StartTime);
         $eet=  strtotime($EndTime);
         $diff= $eet-$sst;
-        $timeElapsed= date("h.i",$diff);
+        $timeElapsed= round(($diff/60) / 60, 2);
 			if(!is_serialized($data)) {
 				$data[30] = $timeElapsed;
 			}
