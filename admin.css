@@ -387,3 +387,11 @@ div.mce-container {
 }
 
 
+
+.ui-widget-overlay.ui-front {
+    z-index:2 !important;
+}
+
+#wp-link-wrap {
+    z-index:300005 !important;
+}
