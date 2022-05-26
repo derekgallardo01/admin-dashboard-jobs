@@ -21,8 +21,96 @@ if(!$is_request_ajax):
     <br /><small class="border-top">Use this link to request a new massage event.</small>
 </p> -->
 <div id="panel-events-user" class="wrap list-locations">
+<?php
+
+if(isset($_GET["gg"]) || 1){
+    
+   /* error_reporting(E_ALL);
+    ini_set('display_errors',1);*/
+
+    $date = null;
+
+    if( !empty($_REQUEST['search']) && is_array($_REQUEST['search']) && !empty($_REQUEST['search']['year']) ) {
+
+        $date = $_REQUEST['search']['year'].'{month}';
+
+        $date = str_replace('{month}',(!empty($_REQUEST['search']['month']) ? '-'.$_REQUEST['search']['month'] : ''),$date);
+
+    }
+    $adm_jobs = new Admin_Jobs();
+    //get_available_locations_user
+    
+    $locations = $adm_jobs->get_available_locations_created(get_current_user_id(),$date);
+    
+    foreach($locations as $location_data){
+        //echo '<pre>';
+        //print_r($location_data);  die();
+        $loc_data = unserialize($location_data->data);
+        
+        //print_r($location_data);
+
+    ?>
+
+        <tr>
+            <td colspan="8">
+            <!--<table border="0">
+                <tr>
+                <td><span class="nameheading"><b>Therapist Names</b></span></td>
+                <td><span class="nameheading"><b>Email Id</b></span></td>
+                <td><span class="nameheading"><b>Phone</b></span></td>
+                <td><span class="nameheading"><b>Invitation Status</b></span></td>
+                </tr>-->
+
+                <?php
+                $users_inviteds = maybe_unserialize($location_data->users_invited);
+                $status_accept = maybe_unserialize($location_data->accept_job);
+                //print_r($location_data);
+                if(!empty($users_inviteds)){
+                    foreach($users_inviteds as $id=>$therapist) {
+                        
+                        $user_info = get_userdata($id);
+                        //$user_info = $user_info_ob->data;
+                       // print_r($user_info);
+                        $user_email = isset($user_info->user_email)?$user_info->user_email:'';
+                        
+                        $phone  = get_user_meta($id, 'mobile_phone_number', true);
+                        //echo $therapist;
+                        //echo '<tr><td><span class="simpletext">'.str_replace('View address','',$therapist).'</span></td><td><span class="simpletext">' . $user_email . '</span></td><td><span class="simpletext">' . $phone . '</span></td><td>';
+                        
+                        if( isset($status_accept[$id]) ) {
+
+                            echo 'Accepted Therapist : '.str_replace('View address','',$therapist).'<br /> ';
+                            //echo '<span class="selectedstat">Accepted</span>';
+                        } else {
+                            //echo '<span class="simplestat">Pending</span>';
+                            
+                        }
+                        
+                        //echo '</td></tr>';
+                    }
+                }
+                                
+                ?>
+
+                <!--</table>-->	
+
+                </td>
+        </tr>
+
+    <?php  } ?>
+    </table>
+
+    <?php 
+
+}else{
+    echo do_shortcode('[stickylist id="11" user="' . $usrid . '"]');
+}
+
+
+?>
     <div class="panel-content">
 <?php endif;
+
 
         if(count($locations) > 0) { 
             foreach($locations as $location) {
@@ -34,7 +122,10 @@ if(!$is_request_ajax):
                 
 
                 $eventDate = strtotime( $location->year.'-'.$location->month.'-'.$location->day.' '.$location->stime );
+            
             ?>
+            
+            
             <div id="location_<?php echo $location->ID; ?>" class="colwrapper events-user.php">
                     <div class="fields">
                         <div class="field-main <?php if(!$location->exists_vacantes){ echo 'job-accepted'; }?>">
@@ -127,4 +218,6 @@ if(!$is_request_ajax):
 
 
 
+
 ?>
+
