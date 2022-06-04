@@ -4746,7 +4746,7 @@ EOF;
                     continue;
 
                 }
-
+				
                 $arr_values = maybe_unserialize($loc->data);
 
                 $arr_accept = maybe_unserialize($loc->accept_job);
@@ -6352,6 +6352,12 @@ EOF;
 
             }
 
+        }
+
+        if(isset($_GET["ev"]) && $_GET["ev"]=='p'){
+            $where .= 'AND CONCAT(d.year,"-", lpad(d.month,2,0),"-",lpad(d.day,2,0) ) < "'.date( 'Y-m-d', strtotime( $date . ' -2 days' ) ).'"';
+        }elseif(isset($_GET["ev"]) && $_GET["ev"]=='c'){
+            $where .= 'AND CONCAT(d.year,"-", lpad(d.month,2,0),"-",lpad(d.day,2,0) ) >= "'.date( 'Y-m-d', strtotime( $date . ' -2 days' ) ).'"';
         }
 
         // if get all massage event locations in the database filter just by date :(
