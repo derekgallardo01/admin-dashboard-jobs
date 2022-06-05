@@ -6355,9 +6355,9 @@ EOF;
         }
 
         if(isset($_GET["ev"]) && $_GET["ev"]=='p'){
-            $where .= 'AND CONCAT(d.year,"-", lpad(d.month,2,0),"-",lpad(d.day,2,0) ) < "'.date( 'Y-m-d', strtotime( $date . ' -2 days' ) ).'"';
+            $where .= 'AND CONCAT(d.year,"-", lpad(d.month,2,0),"-",lpad(d.day,2,0) ) < "'.date( 'Y-m-d', strtotime( $date . ' -1 day' ) ).'"';
         }elseif(isset($_GET["ev"]) && $_GET["ev"]=='c'){
-            $where .= 'AND CONCAT(d.year,"-", lpad(d.month,2,0),"-",lpad(d.day,2,0) ) >= "'.date( 'Y-m-d', strtotime( $date . ' -2 days' ) ).'"';
+            $where .= 'AND CONCAT(d.year,"-", lpad(d.month,2,0),"-",lpad(d.day,2,0) ) >= "'.date( 'Y-m-d', strtotime( $date . ' -1 day' ) ).'"';
         }
 
         // if get all massage event locations in the database filter just by date :(
