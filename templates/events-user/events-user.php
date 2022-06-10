@@ -142,19 +142,29 @@ if(isset($_GET["gg"]) || 1){
                                 <span class="text"><?php _e('Payment Success',$lang); ?></span>
                             </div>
                             <?php } ?>
-                            <?php if(!$location->exists_vacantes) { ?>
+                            <?php 
+                            if(!$location->exists_vacantes) { ?>
                             <div class="event-info-button banner-accepted alert alert-success">
                                 <i class="icon-ok-sign"></i>
                                 <span class="text"><?php printf(__('%s Confirmed',$lang), $attrs['name']); ?></span>
                             </div>
                             <?php } ?>
                         </div>
-                        <?php foreach($labels as $key=>$lbel){ if(in_array($key, $exclude_fields)) continue; ?>
-                        <div class="sm_col <?php echo $key; ?>">
-                            <div class="title"><?php echo $lbel; ?></div>
-                            <div class="content"><?php echo $key == Admin_Jobs::$field_id_dates_and_events ? date('g:i a', $eventDate).' - '.date('g:i a', strtotime($location->etime)) : $info[$key]; ?></div>
-                        </div>
-                        <?php } ?>
+                        <?php
+                        foreach($labels as $key=>$lbel){ if(in_array($key, $exclude_fields)) continue;
+
+                        $date_before_four_day = date('Y-m-d',  strtotime( $location->year.'-'.str_pad($location->month,2,0,STR_PAD_LEFT).'-'.str_pad($location->day,2,0,STR_PAD_LEFT) . ' -4 days' ) );
+                        $today_date             = $location->year.'-'.str_pad($location->month,2,0,STR_PAD_LEFT).'-'.str_pad($location->day,2,0,STR_PAD_LEFT);
+                        if($key==34? (date('Y-m-d')<=$today_date && date('Y-m-d')>=$date_before_four_day):1)
+                            {
+                            ?>
+                            <div class="sm_col <?php echo $key; ?>">
+                                <div class="title"><?php echo $lbel; ?></div>
+                                <div class="content"><?php echo $key == Admin_Jobs::$field_id_dates_and_events ? date('g:i a', $eventDate).' - '.date('g:i a', strtotime($location->etime)) : $info[$key]; ?></div>
+                            </div>
+                            <?php 
+                            }
+                    } ?>
                     </div>
                     <div class="clr"></div>
                     <?php 
