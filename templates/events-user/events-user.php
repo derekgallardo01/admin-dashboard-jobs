@@ -209,7 +209,7 @@ if(isset($_GET["gg"]) || 1){
             </div>
             <?php }
         } else {
-            echo '<h3>'.sprintf(__('%s not found', $lang),$attrs['plural_name']).'</h3>';
+            echo '<h3>'.sprintf(__('No Current %s found.', $lang),$attrs['plural_name']).'</h3>';
         }
         ?>
 <?php if(!$is_request_ajax): ?>
