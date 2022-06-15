@@ -6779,13 +6779,22 @@ function login_redirect( $redirect_to, $request, $user ){
     // Check if the role you're interested in, is present in the array.
     if ( in_array( 'van_user', $user_roles, true ) ) {
         return home_url('health-fairs-plus-services-powered-by-thats-the-spot-massage');
+    }elseif(in_array( 'client', $user_roles, true )){
+        return home_url('my-events');
     }elseif(in_array( 'administrator', $user_roles, true )){
         return home_url('wp-admin');
     }elseif(in_array( 'therapist', $user_roles, true )){
         return home_url('my-events');
     }else{
-        return home_url('dashboard');
+        return home_url('my-events/?ev=c');
     }
     
 }
 add_filter( 'login_redirect', 'login_redirect', 10, 3 );
+
+add_action('after_setup_theme', 'remove_admin_bar');
+function remove_admin_bar() {
+if (!current_user_can('administrator') && !is_admin()) {
+  show_admin_bar(false);
+}
+}
