@@ -3924,15 +3924,20 @@ EOF;
     function gform_finalize_entry($entry, $form) {
 		global $wpdb;
 		//print_r($entry);
-		///print($form);
-		//die();
+		
+        
 		
 		if( $entry['form_id'] == 11 ){
+        //print($form);
         
-            for($i=0;$i<=20;$i++){
+        //print_r($entry);
 
+		//print_r($_POST);
+        //die();/**/
+            for($i=0;$i<=20;$i++){
+                //Array ( [0] => 52 [1] => 33 [2] => 49 [3] => 34 [4] => 44 [5] => 53 [6] => 7 [7] => 30 [8] => 8 [9] => 51 [10] => 9 [11] => 10 [12] => 28 [13] => 50 ) 
                 $post_fields = array_keys(get_option('gf_labels_location', array()));	 
-                
+                //print_r($post_fields);die();
                 //$value = AJ_Location::convertListObjects($_POST["input_50"]);
                 /*print_r($value);
                 print_r($post_fields);
@@ -3950,6 +3955,9 @@ EOF;
                     }
                     $it++;
                 }
+                $data[66] = $entry[66];
+                $data[67] = $entry[67];
+                $data[68] = $entry[68];
                 
                 if($i>0){
 

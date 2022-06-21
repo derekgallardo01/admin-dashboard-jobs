@@ -46,11 +46,8 @@ if(isset($_GET["gg"]) || 1){
         //echo '<pre>';
         //print_r($location_data);  die();
         $loc_data = unserialize($location_data->data);
-        
-        //print_r($location_data);
-
-    ?>
-
+    
+        ?>
         <tr>
             <td colspan="8">
             <!--<table border="0">
@@ -164,10 +161,48 @@ if(isset($_GET["gg"]) || 1){
                             </div>
                             <?php 
                             }
-                    } ?>
+                    } 
+                    
+                    
+                    ?>
                     </div>
                     <div class="clr"></div>
                     <?php 
+                            $users_inviteds = maybe_unserialize($location->users_invited);
+                            $status_accept = maybe_unserialize($location->accept_job);
+                            
+                            if(!empty($users_inviteds) && isset($_GET["ev"]) && $_GET["ev"]!='p' ){
+                                echo '<div style="margin-left:10px">';
+                                echo '<h3>Accepted Therapist</h3>
+                                <h3>Phone Number</h3>';
+                                foreach($users_inviteds as $id=>$therapist) {
+                                    
+                                    $user_info = get_userdata($id);
+                                    //$user_info = $user_info_ob->data;
+                                // print_r($user_info);
+                                    $user_email = isset($user_info->user_email)?$user_info->user_email:'';
+                                    
+                                    $phone  = get_user_meta($id, 'phone', true);
+        
+                                    //echo $therapist;
+                                    //echo '<tr><td><span class="simpletext">'.str_replace('View address','',$therapist).'</span></td><td><span class="simpletext">' . $user_email . '</span></td><td><span class="simpletext">' . $phone . '</span></td><td>';
+                                    
+                                    if( isset($status_accept[$id]) ) {
+                                        echo get_user_meta($id, 'first_name', true) . ' '.get_user_meta($id, 'last_name', true) . ' ' .$phone.'<br />';
+        
+                                        //echo 'Accepted Therapist : '.str_replace('View address','',$therapist).'<br /> ';
+                                        //echo '<span class="selectedstat">Accepted</span>';
+                                    } else {
+                                        //echo '<span class="simplestat">Pending</span>';
+                                        
+                                    }
+                                    
+                                    //echo '</td></tr>';
+                                }
+                                echo '</div>';
+                            }
+                    
+
                         if($location->primary_location) {
                             $lead = RGFormsModel::get_lead($location->lead_id);
                             if($lead[Admin_Jobs::$field_id_corporate_massage]) {
@@ -206,7 +241,12 @@ if(isset($_GET["gg"]) || 1){
                         }
                     ?>
             </div>  
-            <?php } 
+            
+            <?php
+            
+
+            
+            } 
             if(count($pages) > 0) { ?>
             <div class="pagination pagination-small">
                 <span class="showing">
