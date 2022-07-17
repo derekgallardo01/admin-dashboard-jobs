@@ -407,7 +407,7 @@ class Admin_Jobs {
 
 
 		if(isset($_GET["delete_invited"])){
-			 global $wpdb;
+			global $wpdb;
 			$invited_id = $_GET["invited_id"];
 			$location_id = $_GET["location_id"];
 			$lid = $_GET["lid"];
@@ -3925,15 +3925,13 @@ EOF;
 		global $wpdb;
 		//print_r($entry);
 		
-        
-		
 		if( $entry['form_id'] == 11 ){
-        //print($form);
-        
-        //print_r($entry);
+            //print($form);
+            
+            //print_r($entry);
 
-		//print_r($_POST);
-        //die();/**/
+            //print_r($_POST);
+            //die();/**/
             for($i=0;$i<=20;$i++){
                 //Array ( [0] => 52 [1] => 33 [2] => 49 [3] => 34 [4] => 44 [5] => 53 [6] => 7 [7] => 30 [8] => 8 [9] => 51 [10] => 9 [11] => 10 [12] => 28 [13] => 50 ) 
                 $post_fields = array_keys(get_option('gf_labels_location', array()));	 
@@ -4034,6 +4032,131 @@ EOF;
                 
             }
 		}
+
+
+        if( $entry['form_id'] == 2 ){
+
+            //GFAPI::delete_entry( $id );
+            
+            $results = $wpdb->get_results('SELECT e.id FROM '.$wpdb->prefix.'gf_entry e WHERE e.form_id='.$entry['form_id'].' and  e.created_by='.$entry['created_by'].' and e.id!= '.$entry['id'].' order by id desc ');
+          
+            if(isset($results[0]) && isset($results[0]->id) ){
+                $sql = "update ".$wpdb->prefix."job_location set lead_id=".$results[0]->id." WHERE lead_id=".$entry['id'];
+                //$sql = "DELETE FROM ".$wpdb->prefix."job_location WHERE lead_id=".$entry['id'];
+                $wpdb->query( $sql );
+
+                GFAPI::delete_entry( $entry['id'] );
+                $final_id = $results[0]->id;
+            }else{
+                $final_id = $entry['id'];
+            }
+            
+            /*print_r($value);
+                print_r($post_fields);
+                echo '<pre>';
+                print_r($_POST);die(); 
+                print_r($entry);*/
+                
+            /*
+            for($i=0;$i<=20;$i++){
+                //Array ( [0] => 52 [1] => 33 [2] => 49 [3] => 34 [4] => 44 [5] => 53 [6] => 7 [7] => 30 [8] => 8 [9] => 51 [10] => 9 [11] => 10 [12] => 28 [13] => 50 ) 
+                $post_fields = array_keys(get_option('gf_labels_location', array()));
+                	 
+                //print_r($post_fields);die();
+                //$value = AJ_Location::convertListObjects($_POST["input_50"]);
+                
+               
+
+                $data = array();
+                $it = 0;
+
+                foreach($post_fields as $datas){
+                    if($post_fields[$it]!=50){
+                        $data[$datas] = $entry[$datas];
+                    }
+                    $it++;
+                }
+                $data[66] = $entry[66];
+                $data[67] = $entry[67];
+                $data[68] = $entry[68];
+                
+                if($i>0){
+
+                    if(isset($_POST["input_52_".$i."_0"])){
+
+                        $k = 0;
+                        foreach($post_fields as $datas){
+                            if(isset($_POST["input_".$datas."_".$i."_".$k])){
+                                $data[$datas] = $_POST["input_".$datas."_".$i."_".$k];
+
+                            }
+                            
+                        }
+
+                    }else{
+                        continue;
+                    }
+                   
+                }
+
+                //print_r($data);
+                //die();
+
+                
+                $user_id = get_current_user_id();
+                
+                $data_columns = array(
+
+                        'primary_location' => 1,
+
+                        'created_by' => $user_id,
+
+                        'users_invited' => null,
+
+                        'accept_job' => null,
+
+                        'id' => false
+
+                    );
+                //print_r($_POST);
+                //print_r($data);die();
+                $StartTime= $_POST["input_58"][0].':'.$_POST["input_58"][1].' '.$_POST["input_58"][2];
+                $EndTime = $_POST["input_59"][0].':'.$_POST["input_59"][1].' '.$_POST["input_59"][2];
+                $StartTime= $_POST["input_64"];
+                $EndTime = $_POST["input_65"];
+                $sst = strtotime($StartTime);
+                $eet=  strtotime($EndTime);
+                $diff= $eet-$sst;
+                $timeElapsed= date("h.i",$diff);
+                //echo $timeElapsed;die();
+                
+                $data[30] = $timeElapsed;
+                $data[53] = '';
+                $data["filled"] = "yes";
+                $insert_id = AJ_Location::store_location($final_id, $data, $data_columns);
+                
+                //$listDates = array(0=>array('day'=>'','month'=>'','year'=>'','stime'=>'','etime'=>'') );
+                //$value = AJ_Location::convertListObjects($_POST["input_50"]);
+                $list = array();
+                $list[0]->day = date('d',strtotime($_POST["input_53"]));
+                $list[0]->month = date('m',strtotime($_POST["input_53"]));
+                $list[0]->year = date('Y',strtotime($_POST["input_53"]));
+                $list[0]->stime = $_POST["input_64"];//$_POST["input_58"][0].':'.$_POST["input_58"][1].':00 '.$_POST["input_58"][2];
+                $list[0]->etime = $_POST["input_65"];//$_POST["input_59"][0].':'.$_POST["input_59"][1].':00 '.$_POST["input_59"][2];
+                if($i>0){
+                    $list = array();
+                    $list[0]->day = date('d',strtotime($_POST["input_53_".$i."_6"]));
+                    $list[0]->month = date('m',strtotime($_POST["input_53_".$i."_6"]));
+                    $list[0]->year = date('Y',strtotime($_POST["input_53_".$i."_6"]));
+                    $list[0]->stime = $_POST["input_64_".$i."_7"];//$_POST["input_58"][0].':'.$_POST["input_58"][1].':00 '.$_POST["input_58"][2];
+                    $list[0]->etime = $_POST["input_65_".$i."_8"];
+                }
+                AJ_Location::addDatesEvent($insert_id,$list);
+                
+            }
+            */
+		}
+
 
         //allow only submissions from Secondary Form (id=2)
 
